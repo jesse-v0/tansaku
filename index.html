@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>tansaku.com</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f6f2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .japanese {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .reading {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: #888;
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .divider {
+      width: 2px;
+      height: 3rem;
+      background: #ccc;
+      margin: 1.5rem auto;
+    }
+
+    .english {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      color: #555;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <h1>hello cunts</h1>
+  <div class="hero">
+    <div class="japanese">探索しよう！</div>
+    <div class="reading">たんさくしよう</div>
+    <div class="divider"></div>
+    <div class="english">Let's explore!</div>
+  </div>
 </body>
 </html>
