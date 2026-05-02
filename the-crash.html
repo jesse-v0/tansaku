@@ -459,23 +459,34 @@
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
 
-    document.querySelectorAll('.grid figure img').forEach(img => {
-      img.addEventListener('click', () => {
-        lbImg.src = img.src;
-        lightbox.classList.add('open');
-      });
+    const imgs = Array.from(document.querySelectorAll('.grid figure img'));
+    let current = 0;
+
+    function openAt(index) {
+      current = (index + imgs.length) % imgs.length;
+      lbImg.src = imgs[current].src;
+      lightbox.classList.add('open');
+    }
+
+    function close() {
+      lightbox.classList.remove('open');
+    }
+
+    imgs.forEach((img, i) => {
+      img.addEventListener('click', () => openAt(i));
     });
 
-    document.getElementById('lightbox-close').addEventListener('click', () => {
-      lightbox.classList.remove('open');
-    });
+    document.getElementById('lightbox-close').addEventListener('click', close);
 
     lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) lightbox.classList.remove('open');
+      if (e.target === lightbox || e.target === lbImg) close();
     });
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') lightbox.classList.remove('open');
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') openAt(current + 1);
+      if (e.key === 'ArrowLeft')  openAt(current - 1);
     });
   </script>
 </body>
