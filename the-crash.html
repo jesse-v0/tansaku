@@ -5,6 +5,194 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Crash — tansaku.com</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .crash-hero {
+      max-width: 780px;
+      margin: 3rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .crash-hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .crash-hero .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+    }
+
+    .story {
+      max-width: 780px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      border-left: 3px solid #e0ddd8;
+      padding-left: 2rem;
+    }
+
+    .story p {
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .story p.placeholder {
+      color: #bbb;
+      font-style: italic;
+    }
+
+    /* Photo groups */
+    .group {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e8e5e0;
+      padding-bottom: 0.75rem;
+    }
+
+    .group-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .group-header .ja {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Editorial grid — mix of sizes */
+    .grid {
+      display: grid;
+      gap: 6px;
+    }
+
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-1-2 { grid-template-columns: 1.6fr 1fr; }
+    .grid-2-1 { grid-template-columns: 1fr 1.6fr; }
+
+    .grid + .grid { margin-top: 6px; }
+
+    .grid figure {
+      margin: 0;
+      overflow: hidden;
+      background: #e8e5e0;
+      position: relative;
+    }
+
+    .grid figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      cursor: zoom-in;
+    }
+
+    .grid figure:hover img {
+      transform: scale(1.02);
+    }
+
+    .grid figure figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      color: #fff;
+      font-size: 0.78rem;
+      padding: 1.5rem 0.75rem 0.6rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .grid figure:hover figcaption {
+      opacity: 1;
+    }
+
+    /* Tall aspect for hero images */
+    .tall { aspect-ratio: 4/3; }
+    .wide { aspect-ratio: 16/9; }
+    .square { aspect-ratio: 1/1; }
+    .portrait { aspect-ratio: 3/4; }
+
+    /* Videos */
+    .videos {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .video-grid video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: #111;
+      display: block;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    #lightbox-close:hover { opacity: 1; }
+
+    @media (max-width: 680px) {
+      .grid-2, .grid-3, .grid-1-2, .grid-2-1 {
+        grid-template-columns: 1fr;
+      }
+      .video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -13,10 +201,215 @@
     <a href="what-we-do.html">What We Do</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <main class="page">
+
+  <!-- Title & Story -->
+  <div class="crash-hero">
     <h1>The Crash</h1>
-    <div class="subtitle">クラッシュ / What happened</div>
-    <p>Placeholder — tell the story here.</p>
-  </main>
+    <div class="subtitle">クラッシュ / Austin, TX</div>
+  </div>
+
+  <div class="story">
+    <p class="placeholder">Your story goes here — what happened, where you were going, what you remember. Write as much or as little as you want.</p>
+    <p class="placeholder">A second paragraph if you need it.</p>
+  </div>
+
+  <!-- Group 1: The Scene -->
+  <div class="group">
+    <div class="group-header">
+      <h2>The Scene</h2>
+      <span class="ja">現場</span>
+    </div>
+
+    <div class="grid grid-1-2">
+      <figure class="tall">
+        <img src="images/crash/IMG_2217.webp" alt="The scene" loading="lazy">
+        <figcaption>Fire Engine 42 and Austin-Travis County EMS arrive at the intersection as the sedan sits in the flooded drainage canal below.</figcaption>
+      </figure>
+      <figure class="tall">
+        <img src="images/crash/IMG_2216.webp" alt="First responders at the canal" loading="lazy">
+        <figcaption>First responders work the bank of the canal as police secure the scene above.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:6px">
+      <figure class="wide">
+        <img src="images/crash/IMG_2219.webp" alt="Wide shot of intersection" loading="lazy">
+        <figcaption>The full intersection locked down — EMS, fire, and police units spread across both directions.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2222.webp" alt="Both fire trucks" loading="lazy">
+        <figcaption>Two fire units flank the scene as crews assess the vehicle in the water.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2240.webp" alt="Intersection overview" loading="lazy">
+        <figcaption>Looking back across the intersection — cones, cruisers, the Bronco still in the road.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Group 2: The Other Car -->
+  <div class="group">
+    <div class="group-header">
+      <h2>The Other Car</h2>
+      <span class="ja">相手の車</span>
+    </div>
+
+    <div class="grid grid-2">
+      <figure class="tall">
+        <img src="images/crash/IMG_2225.webp" alt="Sedan in the canal" loading="lazy">
+        <figcaption>The sedan came to rest in the drainage canal, hood crushed, water rising around it.</figcaption>
+      </figure>
+      <figure class="tall">
+        <img src="images/crash/IMG_2243.webp" alt="Long shot down the canal" loading="lazy">
+        <figcaption>Looking down the length of the canal — the car had traveled some distance before stopping.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:6px">
+      <figure class="wide">
+        <img src="images/crash/IMG_2239.webp" alt="Car from across the canal" loading="lazy">
+        <figcaption>The full extent of the damage visible from the opposite bank.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2224.webp" alt="Shattered windshield glass" loading="lazy">
+        <figcaption>A panel of windshield glass landed in the grass — still intact as one piece, somehow.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2263.webp" alt="Recovery begins" loading="lazy">
+        <figcaption>Recovery operations begin — a tow crane positions above the canal bank.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:6px">
+      <figure class="wide">
+        <img src="images/crash/IMG_2261.webp" alt="Tow truck at the canal" loading="lazy">
+        <figcaption>The sedan being lifted out of the canal by recovery crew.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2238.webp" alt="Car in canal from far side" loading="lazy">
+        <figcaption>A final look at the car before extraction — doors open, completely destroyed.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Group 3: The Bronco -->
+  <div class="group">
+    <div class="group-header">
+      <h2>The Bronco</h2>
+      <span class="ja">ブロンコ</span>
+    </div>
+
+    <div class="grid grid-1-2">
+      <figure class="tall">
+        <img src="images/crash/IMG_2227.webp" alt="Bronco front damage" loading="lazy">
+        <figcaption>The front fender took the hit — bent but not broken. The Bronco held its ground.</figcaption>
+      </figure>
+      <figure class="tall">
+        <img src="images/crash/IMG_2228.webp" alt="Bronco front close" loading="lazy">
+        <figcaption>Closer inspection of the impact zone — the chrome bumper survived mostly intact.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:6px">
+      <figure class="wide">
+        <img src="images/crash/IMG_2237.webp" alt="Bronco profile" loading="lazy">
+        <figcaption>The Bronco's profile — lifted, composed, like it barely noticed.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2241.webp" alt="Bronco door open" loading="lazy">
+        <figcaption>Door open, waiting. The interior survived without a scratch.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2249.webp" alt="Bronco rear quarter" loading="lazy">
+        <figcaption>Rear quarter panel — untouched. The back half didn't know there'd been a crash.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Group 4: Aftermath -->
+  <div class="group">
+    <div class="group-header">
+      <h2>Aftermath</h2>
+      <span class="ja">その後</span>
+    </div>
+
+    <div class="grid grid-2">
+      <figure class="wide">
+        <img src="images/crash/IMG_2230.webp" alt="AFD Ladder 42 and Bronco" loading="lazy">
+        <figcaption>Austin Fire Department Ladder 42 alongside the Bronco — the intersection still blocked off.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2250.webp" alt="Cleanup crew" loading="lazy">
+        <figcaption>Cleanup crew moves in, orange markers still dotting the road.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:6px">
+      <figure class="wide">
+        <img src="images/crash/IMG_2252.webp" alt="Southside Towing hooks up" loading="lazy">
+        <figcaption>Southside Towing hooks up the Bronco.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2255.webp" alt="Bronco lifted" loading="lazy">
+        <figcaption>Front wheels off the ground — the tow begins.</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="images/crash/IMG_2257.webp" alt="Bronco on the tow truck" loading="lazy">
+        <figcaption>Leaving the scene.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Videos -->
+  <div class="videos">
+    <div class="group-header">
+      <h2>Video</h2>
+      <span class="ja">動画</span>
+    </div>
+    <div class="video-grid">
+      <video controls preload="none" poster="images/crash/IMG_2217.webp">
+        <source src="images/crash/IMG_2246.mp4" type="video/mp4">
+      </video>
+      <video controls preload="none" poster="images/crash/IMG_2225.webp">
+        <source src="images/crash/IMG_2247.mp4" type="video/mp4">
+      </video>
+      <video controls preload="none" poster="images/crash/IMG_2227.webp">
+        <source src="images/crash/IMG_2248.mp4" type="video/mp4">
+      </video>
+      <video controls preload="none" poster="images/crash/IMG_2252.webp">
+        <source src="images/crash/IMG_2253.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lightbox-close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.grid figure img').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lightbox.classList.add('open');
+      });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+  </script>
 </body>
 </html>
